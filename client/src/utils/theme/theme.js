@@ -1,18 +1,19 @@
 import { createTheme } from "@mui/material/styles";
 import { red } from "@mui/material/colors";
+import typography from "./typography";
 
 // Create a theme instance.
 const theme = createTheme({
   palette: {
     mode: "dark",
     primary: {
-      main: "#E200A6",
+      main: "#2f8af5",
     },
     secondary: {
       main: "#19857b",
     },
     background: {
-      default: "#121128",
+      default: "#06070A",
       paper: "#1A162C",
       card: "#262143",
     },
@@ -20,6 +21,7 @@ const theme = createTheme({
       main: red.A400,
     },
   },
+  typography,
 });
 
 export default theme;

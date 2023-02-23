@@ -11,6 +11,7 @@ import Section9 from "../containers/Section9";
 import Section10 from "../containers/Section10";
 import HomepageNavbar from "../components/HomepageNavbar";
 import Footer from "../components/Footer";
+import { Box } from "@mui/material";
 
 const HomePage = () => {
   return (
@@ -18,17 +19,20 @@ const HomePage = () => {
       <HomepageNavbar />
 
       <Section1 />
-      <Section2 />
-      <Section3 />
-      <Section4 />
-      <Section5 />
-      <Section6 />
-      <Section7 />
-      <Section8 />
-      <Section9 />
-      <Section10 />
 
-      <Footer />
+      <Box sx={{ bgcolor: "background.default", position: "relative" }}>
+        <Section2 />
+        <Section3 />
+        <Section4 />
+        <Section5 />
+        <Section6 />
+        <Section7 />
+        <Section8 />
+        <Section9 />
+        <Section10 />
+
+        <Footer />
+      </Box>
     </div>
   );
 };

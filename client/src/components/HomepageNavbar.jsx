@@ -1,9 +1,9 @@
-import React from 'react'
+import { Box } from "@mui/material";
+import React from "react";
+import { NAVBAR_HEIGHT } from "../constants";
 
 const HomepageNavbar = () => {
-  return (
-    <div>HomepageNavbar</div>
-  )
-}
+  return <Box sx={{ height: `${NAVBAR_HEIGHT}px` }}>HomepageNavbar</Box>;
+};
 
-export default HomepageNavbar
+export default HomepageNavbar;

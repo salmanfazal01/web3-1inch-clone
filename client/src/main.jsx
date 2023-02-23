@@ -5,7 +5,7 @@ import { ChainId, ThirdwebProvider } from "@thirdweb-dev/react";
 import "./styles/globals.css";
 import { BrowserRouter as Router } from "react-router-dom";
 import { CssBaseline, ThemeProvider } from "@mui/material";
-import theme from "./utils/theme";
+import theme from "./utils/theme/theme";
 import { StateContextProvider } from "./context";
 
 // This is the chainId your dApp will work on.
