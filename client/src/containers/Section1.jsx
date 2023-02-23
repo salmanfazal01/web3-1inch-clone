@@ -1,4 +1,6 @@
-import React, { useEffect, useRef, useState } from "react";
+import AppleIcon from "@mui/icons-material/Apple";
+import GoogleIcon from "@mui/icons-material/Google";
+import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import {
   Box,
   Button,
@@ -6,31 +8,27 @@ import {
   Hidden,
   Stack,
   Typography,
-  useMediaQuery,
   useTheme,
 } from "@mui/material";
+import React from "react";
+import useMeasure from "react-use-measure";
+import ShootingStarImage from "../assets/images/section1/main-bg-0-0.png";
 import MainBG from "../assets/images/section1/main-bg-0_1.webp";
 import TreesImage from "../assets/images/section1/main-bg-1_1.webp";
 import CliffImage from "../assets/images/section1/main-bg-2_1.webp";
 import HorseImage from "../assets/images/section1/main-bg-3.png";
-import ShootingStarImage from "../assets/images/section1/main-bg-0-0.png";
-import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
-import AppleIcon from "@mui/icons-material/Apple";
-import GoogleIcon from "@mui/icons-material/Google";
 import Title from "../components/Title";
-import { NAVBAR_HEIGHT } from "../constants";
 
 const Section1 = () => {
   const theme = useTheme();
+  const [ref, { height }] = useMeasure();
+
+  console.log(height);
 
   return (
-    <Box
-      sx={{
-        width: "100%",
-      }}
-    >
+    <Box sx={{ width: "100%" }}>
       {/* Main Background */}
-      {/* <Box
+      <Box
         sx={{
           position: "fixed",
           zIndex: -10,
@@ -40,10 +38,10 @@ const Section1 = () => {
         }}
       >
         <img src={MainBG} style={{ width: "100%" }} />
-        
-      </Box> */}
+      </Box>
 
       <Box
+        ref={ref}
         sx={{
           display: "block",
           position: "absolute",
@@ -52,7 +50,7 @@ const Section1 = () => {
           top: 0,
           left: 0,
           right: 0,
-          overflow: "hidden",
+          // overflow: "hidden",
         }}
       >
         <img
@@ -65,7 +63,7 @@ const Section1 = () => {
           }}
         />
 
-        <img src={MainBG} style={{ width: "100%" }} />
+        <img src={MainBG} style={{ width: "100%", opacity: 0 }} />
 
         {/* Trees */}
         <Hidden mdDown>
@@ -101,10 +99,22 @@ const Section1 = () => {
           src={HorseImage}
           style={{
             position: "absolute",
-            height: "40%",
+            height: "38%",
             right: "14%",
             bottom: "45%",
             transform: "rotate(7deg)",
+          }}
+        />
+
+        <Box
+          sx={{
+            bgcolor: "background.default",
+            position: "absolute",
+            bottom: 0,
+            left: 0,
+            right: 0,
+            height: "600px",
+            top: height,
           }}
         />
       </Box>
@@ -113,7 +123,7 @@ const Section1 = () => {
       <Container
         sx={{
           height: "80vh",
-          // position: "relative",
+          position: "relative",
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",

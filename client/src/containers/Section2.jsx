@@ -1,8 +1,7 @@
-import { Box, Container, Grid, Hidden, Stack, Typography } from "@mui/material";
+import { Box, Container, Grid, Stack, Typography } from "@mui/material";
 import React from "react";
 import CountUp from "react-countup";
 import Title from "../components/Title";
-import BorderImage from "../assets/images/section2/total-values-border.svg";
 
 const Component = ({
   before = "",
