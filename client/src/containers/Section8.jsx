@@ -9,7 +9,7 @@ const Section8 = () => {
   return (
     <Container
       maxWidth="md"
-      sx={{ mt: { xs: 10, md: 20 }, textAlign: "center" }}
+      sx={{ mt: { xs: 10, md: 20, lg: 25 }, textAlign: "center" }}
     >
       <Stack alignItems="center">
         <Title variant={{ xs: "h3", md: "h2" }} sx={{ mb: 2 }}>

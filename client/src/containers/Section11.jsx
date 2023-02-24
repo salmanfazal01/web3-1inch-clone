@@ -98,14 +98,14 @@ const ITEMS = [
 
 const Section11 = () => {
   return (
-    <Container sx={{ my: { xs: 10, md: 20 } }}>
+    <Container sx={{ my: { xs: 10, md: 20, lg: 25 } }}>
       <Title variant={{ xs: "h3", md: "h2" }} sx={{ mb: { xs: 5, md: 8 } }}>
         Partners and stakeholders
       </Title>
 
       <Grid container spacing={3} rowSpacing={6} sx={{ mb: 4 }}>
         {ITEMS.map(({ link, image }) => (
-          <Grid item xs={6} sx={4} md={3} lg={2} key={link}>
+          <Grid item xs={6} sm={4} md={3} lg={2} key={link}>
             <img
               src={image}
               style={{ maxHeight: "60px", objectFit: "contain" }}

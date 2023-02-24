@@ -18,7 +18,7 @@ const Section5 = () => {
   return (
     <Container
       sx={{
-        mt: { xs: 10, md: 20 },
+        mt: { xs: 10, md: 20, lg: 25 },
       }}
     >
       <Box

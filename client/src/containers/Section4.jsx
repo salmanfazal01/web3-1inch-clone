@@ -44,7 +44,7 @@ const Section4 = () => {
   const [tabValue, setTabValue] = useState(0);
 
   return (
-    <Container sx={{ mt: { xs: 15, md: 20, lg: 30 } }}>
+    <Container sx={{ mt: { xs: 15, md: 20, lg: 25 } }}>
       {/* Top */}
       <Grid container spacing={10} flexWrap="wrap-reverse" alignItems="center">
         {/* Left */}

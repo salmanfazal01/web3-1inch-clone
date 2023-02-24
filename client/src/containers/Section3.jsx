@@ -27,7 +27,7 @@ const ITEMS = [
 
 const Section3 = () => {
   return (
-    <Container sx={{ mt: { xs: 10, md: 18 } }}>
+    <Container sx={{ mt: { xs: 10, md: 20 } }}>
       <Container maxWidth="md">
         <Title
           variant={{ xs: "h3", md: "h2" }}

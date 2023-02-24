@@ -4,11 +4,11 @@ const themeTypography = {
   fontSize: 16,
   fontWeight: 400,
   caption: {
-    fontSize: "0.85rem",
+    fontSize: "0.8rem",
     fontWeight: 400,
   },
   body2: {
-    fontSize: "1rem",
+    fontSize: "0.95rem",
     fontWeight: 400,
   },
   body1: {
