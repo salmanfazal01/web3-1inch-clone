@@ -9,6 +9,7 @@ import Section7 from "../containers/Section7";
 import Section8 from "../containers/Section8";
 import Section9 from "../containers/Section9";
 import Section10 from "../containers/Section10";
+import Section11 from "../containers/Section11";
 import HomepageNavbar from "../components/HomepageNavbar";
 import Footer from "../components/Footer";
 import { Box } from "@mui/material";
@@ -30,6 +31,7 @@ const HomePage = () => {
         <Section8 />
         <Section9 />
         <Section10 />
+        <Section11 />
 
         <Footer />
       </Box>

@@ -7,9 +7,9 @@ const OutlinedButton = ({ sx = {}, arrow, text, children, ...props }) => {
     <Button
       variant="outlined"
       sx={{
-        borderRadius: 1.5,
+        borderRadius: 2,
         color: "text.primary",
-        borderColor: "text.primary",
+        borderColor: "text.secondary",
         ...sx,
       }}
       {...props}

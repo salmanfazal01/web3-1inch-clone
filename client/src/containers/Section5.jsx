@@ -51,7 +51,7 @@ const Section5 = () => {
           },
         }}
       >
-        <Grid container flexWrap="wrap-reverse" sx={{ px: 5 }}>
+        <Grid container flexWrap="wrap-reverse" sx={{ px: { xs: 5, md: 8 } }}>
           <Grid item xs={12} md={5} lg={4}>
             <Stack spacing={2} justifyContent="center" sx={{ height: "100%" }}>
               <Title variant={{ xs: "h3", md: "h2" }}>1inch Fusion</Title>

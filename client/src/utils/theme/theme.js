@@ -20,6 +20,9 @@ const theme = createTheme({
     error: {
       main: red.A400,
     },
+    text: {
+      secondary: "rgba(255, 255, 255, 0.6)",
+    },
   },
   typography,
 });
