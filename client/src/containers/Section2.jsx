@@ -26,7 +26,7 @@ const Component = ({
 
 const Section2 = () => {
   return (
-    <Container sx={{ mt: { xs: -10, md: -5 } }}>
+    <Container sx={{ mt: -10 }}>
       <Box
         sx={(theme) => ({
           position: "relative",

@@ -1,4 +1,4 @@
-import { Container, Grid, Typography } from "@mui/material";
+import { Box, Container, Grid, Typography } from "@mui/material";
 import React from "react";
 import Title from "../components/Title";
 import Near from "../assets/images/section11/near.svg";
@@ -103,15 +103,40 @@ const Section11 = () => {
         Partners and stakeholders
       </Title>
 
-      <Grid container spacing={3} rowSpacing={6} sx={{ mb: 4 }}>
+      <Grid
+        container
+        spacing={3}
+        rowSpacing={6}
+        sx={{ mb: 10, position: "relative" }}
+      >
         {ITEMS.map(({ link, image }) => (
           <Grid item xs={6} sm={4} md={3} lg={2} key={link}>
-            <img
-              src={image}
-              style={{ maxHeight: "60px", objectFit: "contain" }}
-            />
+            <Box
+              sx={{
+                cursor: "pointer",
+                "&:hover": {
+                  filter: "contrast(50%)",
+                },
+              }}
+            >
+              <img
+                src={image}
+                style={{ maxHeight: "60px", objectFit: "contain" }}
+              />
+            </Box>
           </Grid>
         ))}
+
+        <Box
+          sx={{
+            position: "absolute",
+            background: "linear-gradient(180deg, #06070a85, #06070a)",
+            bottom: 0,
+            right: 0,
+            left: 0,
+            height: 80,
+          }}
+        ></Box>
       </Grid>
 
       <OutlinedButton text="Explore ecosystem" arrow />

@@ -17,13 +17,12 @@ import MainBG from "../assets/images/section1/main-bg-0_1.webp";
 import TreesImage from "../assets/images/section1/main-bg-1_1.webp";
 import CliffImage from "../assets/images/section1/main-bg-2_1.webp";
 import HorseImage from "../assets/images/section1/main-bg-3.png";
+import LaunchButton from "../components/LaunchButton";
 import Title from "../components/Title";
 
 const Section1 = () => {
   const theme = useTheme();
   const [ref, { height }] = useMeasure();
-
-  console.log(height);
 
   return (
     <Box sx={{ width: "100%" }}>
@@ -113,7 +112,7 @@ const Section1 = () => {
             bottom: 0,
             left: 0,
             right: 0,
-            height: "600px",
+            height: "500px",
             top: height,
           }}
         />
@@ -127,12 +126,16 @@ const Section1 = () => {
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
-          // mt: -5,
+          mt: 8,
+          [theme.breakpoints.up("md")]: {
+            mb: 5,
+            mt: -5,
+          },
         }}
       >
         <Title
           variant={{ xs: "h3", sm: "h2", md: "h1" }}
-          // sx={{ letterSpacing: "0.01em", mb: 2, fontWeight: 800 }}
+          sx={{ letterSpacing: "0.02em", mb: 1 }}
         >
           One-stop access
         </Title>
@@ -145,14 +148,7 @@ const Section1 = () => {
         </Title>
 
         <Stack direction={{ xs: "column", md: "row" }} spacing={4}>
-          <Button
-            variant="contained"
-            size="large"
-            sx={{ borderRadius: 4, height: 58 }}
-          >
-            Launch dApp
-            <KeyboardArrowRightIcon fontSize="small" />
-          </Button>
+          <LaunchButton sx={{ height: 58, px: 3 }} />
 
           <Button
             variant="outlined"
