@@ -1,29 +1,9 @@
 import { Container, Grid, Stack, Typography } from "@mui/material";
 import React from "react";
 import Title from "../components/Title";
-import EthImg from "../assets/images/section3/eth.webp";
-import BscImg from "../assets/images/section3/bsc.webp";
-import PolygonImg from "../assets/images/section3/polygon.webp";
-import OptimismImg from "../assets/images/section3/optimism.webp";
-import GnosisImg from "../assets/images/section3/gnosis.webp";
-import AvalancheImg from "../assets/images/section3/avalanche.webp";
-import ArbitrumImg from "../assets/images/section3/arbitrum.webp";
-import FantomImg from "../assets/images/section3/fantom.webp";
-import KlaytnImg from "../assets/images/section3/klaytn.webp";
-import AuroraImg from "../assets/images/section3/aurora.webp";
+import { section3Content } from "../utils/content";
 
-const ITEMS = [
-  { logo: EthImg, name: "Ethereum" },
-  { logo: BscImg, name: "BNB Chain" },
-  { logo: PolygonImg, name: "Polygon" },
-  { logo: OptimismImg, name: "Optimism" },
-  { logo: GnosisImg, name: "Gnosis" },
-  { logo: AvalancheImg, name: "Avalanche" },
-  { logo: ArbitrumImg, name: "Arbitrum" },
-  { logo: FantomImg, name: "Fantom" },
-  { logo: KlaytnImg, name: "Klaytn" },
-  { logo: AuroraImg, name: "Aurora" },
-];
+const { title, ITEMS } = section3Content;
 
 const Section3 = () => {
   return (
@@ -33,7 +13,7 @@ const Section3 = () => {
           variant={{ xs: "h3", md: "h2" }}
           sx={{ textAlign: "center!important" }}
         >
-          Optimize your trades across hundreds of DEXes on multiple networks
+          {title}
         </Title>
       </Container>
 

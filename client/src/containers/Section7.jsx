@@ -1,30 +1,16 @@
 import { Container, Grid, Typography } from "@mui/material";
 import React from "react";
 import Title from "../components/Title";
-import Image1 from "../assets/images/section7/api.webp";
-import Image2 from "../assets/images/section7/grant-program.webp";
 import ServicesCard from "../components/ServicesCard";
+import { section7Content } from "../utils/content";
 
-const ITEMS = [
-  {
-    title: "1inch API",
-    subtitle:
-      "A cutting-edge discovery and routing algorithm that offers non-custodial asset swaps at the most attractive rates in major DeFi ecosystems.",
-    image: Image1,
-  },
-  {
-    title: "1inch grant program",
-    subtitle:
-      "An initiative that fosters the 1inch Network's growth and incentivizes contributions through grants and other resources.",
-    image: Image2,
-  },
-];
+const { title, subtitle, ITEMS } = section7Content;
 
 const Section7 = () => {
   return (
     <Container sx={{ mt: { xs: 10, md: 20, lg: 25 } }}>
       <Title variant={{ xs: "h3", md: "h2" }} sx={{ mb: 2 }}>
-        Grow with our ecosystem
+        {title}
       </Title>
 
       <Typography
@@ -32,7 +18,7 @@ const Section7 = () => {
         color="text.secondary"
         sx={{ mb: { xs: 5, md: 8 } }}
       >
-        Build solutions alongside decentralized finance leaders
+        {subtitle}
       </Typography>
 
       <Grid container spacing={3}>

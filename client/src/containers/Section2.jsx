@@ -2,6 +2,7 @@ import { Box, Container, Grid, Stack, Typography } from "@mui/material";
 import React from "react";
 import CountUp from "react-countup";
 import Title from "../components/Title";
+import { section2Content } from "../utils/content";
 
 const Component = ({
   before = "",
@@ -23,6 +24,8 @@ const Component = ({
     </Typography>
   </Stack>
 );
+
+const { items } = section2Content;
 
 const Section2 = () => {
   return (
@@ -53,36 +56,11 @@ const Section2 = () => {
           justifyContent="space-between"
           sx={{ zIndex: 20 }}
         >
-          <Grid item xs={6} md={3}>
-            <Component counter={345} subtitle="Liquidity sources" />
-          </Grid>
-
-          <Grid item xs={6} md={3}>
-            <Component
-              counter={345}
-              before="$"
-              after="B+"
-              subtitle="Total volume"
-            />
-          </Grid>
-
-          <Grid item xs={6} md={3}>
-            <Component
-              counter={4.4}
-              after="M+"
-              subtitle="Total wallets"
-              decimals
-            />
-          </Grid>
-
-          <Grid item xs={6} md={3}>
-            <Component
-              counter={28.7}
-              after="M+"
-              subtitle="Total Trades"
-              decimals
-            />
-          </Grid>
+          {items.map((item) => (
+            <Grid item xs={6} md={3} key={item.subtitle}>
+              <Component {...item} />
+            </Grid>
+          ))}
         </Grid>
       </Box>
     </Container>

@@ -7,10 +7,11 @@ import {
   useTheme,
 } from "@mui/material";
 import React from "react";
-import BgImage from "../assets/images/section5/news-block-background.webp";
 import OutlinedButton from "../components/OutlinedButton";
 import Title from "../components/Title";
-import BgImageMobile from "../assets/images/section5/news-block-background-mobile.webp";
+import { section5Content } from "../utils/content";
+
+const { BannerBgImage, BannerBgImageMobile, title, subtitle } = section5Content;
 
 const Section5 = () => {
   const theme = useTheme();
@@ -24,7 +25,7 @@ const Section5 = () => {
       <Box
         sx={{
           position: "relative",
-          background: `url(${BgImageMobile})`,
+          background: `url(${BannerBgImageMobile})`,
           backgroundSize: "cover",
           py: 5,
           borderRadius: "30px",
@@ -44,7 +45,7 @@ const Section5 = () => {
             },
           },
           [theme.breakpoints.up("md")]: {
-            background: `url(${BgImage})`,
+            background: `url(${BannerBgImage})`,
             backgroundPosition: "right",
             backgroundSize: "cover",
             py: 0,
@@ -54,12 +55,10 @@ const Section5 = () => {
         <Grid container flexWrap="wrap-reverse" sx={{ px: { xs: 5, md: 8 } }}>
           <Grid item xs={12} md={5} lg={4}>
             <Stack spacing={2} justifyContent="center" sx={{ height: "100%" }}>
-              <Title variant={{ xs: "h3", md: "h2" }}>1inch Fusion</Title>
+              <Title variant={{ xs: "h3", md: "h2" }}>{title}</Title>
 
               <Typography variant="body2" color="text.secondary" sx={{ pb: 3 }}>
-                The Fusion upgrade makes swaps on 1inch yet more efficient and
-                secure, combining liquidity from the entire crypto market in one
-                place.
+                {subtitle}
               </Typography>
 
               <OutlinedButton

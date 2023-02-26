@@ -1,18 +1,9 @@
 import { Container, Grid, Stack, Typography } from "@mui/material";
 import React from "react";
 import Title from "../components/Title";
-import DiscordImage from "../assets/images/section10/discord.webp";
-import RedditImage from "../assets/images/section10/reddit.webp";
-import TelegramImage from "../assets/images/section10/telegram.webp";
-import TwitterImage from "../assets/images/section10/twitter.webp";
-import ServicesCard from "../components/ServicesCard";
+import { section10Content } from "../utils/content";
 
-const SOCIALS = [
-  { name: "Telegram", image: TelegramImage },
-  { name: "Discord", image: DiscordImage },
-  { name: "Reddit", image: RedditImage },
-  { name: "Twitter", image: TwitterImage },
-];
+const { SOCIALS } = section10Content;
 
 const Section10 = () => {
   return (

@@ -1,44 +1,11 @@
 import { Container, Grid, Stack, Tab, Tabs, Typography } from "@mui/material";
 import React, { useState } from "react";
-import NewsImg from "../assets/images/section4/news-image.webp";
-import Phone1Img from "../assets/images/section4/wallet-buy.webp";
-import Phone2Img from "../assets/images/section4/wallet-stake.webp";
-import Phone3Img from "../assets/images/section4/wallet-store.webp";
-import Phone4Img from "../assets/images/section4/wallet-swap.webp";
-import Phone5Img from "../assets/images/section4/wallet-transfer.webp";
+
 import OutlinedButton from "../components/OutlinedButton";
 import Title from "../components/Title";
+import { section4Content } from "../utils/content";
 
-const TABS = [
-  {
-    name: "Buy",
-    image: Phone1Img,
-    subtitle:
-      "Buy crypto with your bank card using our partner fiat gateway providers.",
-  },
-  {
-    name: "Store",
-    image: Phone3Img,
-    subtitle:
-      "Your crypto is protected with the most sophisticated security measures.",
-  },
-  {
-    name: "Transfer",
-    image: Phone5Img,
-    subtitle: "Transfer crypto in multiple blockchain networks.",
-  },
-  {
-    name: "Swap",
-    image: Phone4Img,
-    subtitle: "Swap any amount of tokens at the best rates.",
-  },
-  {
-    name: "Stake",
-    image: Phone2Img,
-    subtitle:
-      "Stake 1INCH to participate in network governance and be eligible for gas costs refunds.",
-  },
-];
+const { TABS, NewsImg } = section4Content;
 
 const Section4 = () => {
   const [tabValue, setTabValue] = useState(0);

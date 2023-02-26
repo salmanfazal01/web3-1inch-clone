@@ -12,13 +12,19 @@ import {
 } from "@mui/material";
 import React from "react";
 import useMeasure from "react-use-measure";
-import ShootingStarImage from "../assets/images/section1/main-bg-0-0.png";
-import MainBG from "../assets/images/section1/main-bg-0_1.webp";
-import TreesImage from "../assets/images/section1/main-bg-1_1.webp";
-import CliffImage from "../assets/images/section1/main-bg-2_1.webp";
-import HorseImage from "../assets/images/section1/main-bg-3.png";
 import LaunchButton from "../components/LaunchButton";
 import Title from "../components/Title";
+import { section1Content } from "../utils/content";
+
+const {
+  MainBG,
+  TreesImage,
+  CliffImage,
+  HorseImage,
+  ShootingStarImage,
+  title,
+  subtitle,
+} = section1Content;
 
 const Section1 = () => {
   const theme = useTheme();
@@ -49,7 +55,6 @@ const Section1 = () => {
           top: 0,
           left: 0,
           right: 0,
-          // overflow: "hidden",
         }}
       >
         <img
@@ -137,14 +142,14 @@ const Section1 = () => {
           variant={{ xs: "h3", sm: "h2", md: "h1" }}
           sx={{ letterSpacing: "0.02em", mb: 1 }}
         >
-          One-stop access
+          {title}
         </Title>
 
         <Title
           variant={{ xs: "h4", sm: "h3", md: "h2" }}
           sx={{ fontWeight: "500", letterSpacing: "0.05em", mb: 6 }}
         >
-          to decentralized finance
+          {subtitle}
         </Title>
 
         <Stack direction={{ xs: "column", md: "row" }} spacing={4}>
