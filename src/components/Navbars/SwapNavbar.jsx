@@ -1,5 +1,6 @@
 import {
   AppBar,
+  Button,
   Container,
   IconButton,
   Stack,
@@ -35,7 +36,7 @@ const LinkButton = ({ children, ...props }) => (
   </Stack>
 );
 
-const Navbar = () => {
+const SwapNavbar = () => {
   const scrollPosition = useScrollPosition();
 
   const theme = useTheme();
@@ -64,6 +65,7 @@ const Navbar = () => {
           alignItems="center"
           justifyContent="space-between"
           flexWrap="wrap"
+          spacing={5}
         >
           {/* Logo */}
           <img src={Logo} style={{ height: "100%", objectFit: "contain" }} />
@@ -73,34 +75,37 @@ const Navbar = () => {
             <Stack
               direction="row"
               alignItems="center"
-              justifyContent="center"
               spacing={6}
               sx={{ flex: 1 }}
               flexWrap="wrap"
             >
               <LinkButton>
-                <Typography variant="body2">Products</Typography>
+                <Typography variant="body2">Trade</Typography>
                 <KeyboardArrowDownIcon fontSize="small" />
               </LinkButton>
 
               <LinkButton>
-                <Typography variant="body2">Developers</Typography>
+                <Typography variant="body2">DAO</Typography>
                 <KeyboardArrowDownIcon fontSize="small" />
               </LinkButton>
 
               <LinkButton>
-                <Typography variant="body2">Governance</Typography>
+                <Typography variant="body2">Earn</Typography>
                 <KeyboardArrowDownIcon fontSize="small" />
               </LinkButton>
 
               <LinkButton>
-                <Typography variant="body2">About</Typography>
+                <Typography variant="body2">More</Typography>
+                <KeyboardArrowDownIcon fontSize="small" />
+              </LinkButton>
+
+              <LinkButton>
+                <Typography variant="body2">Bridges</Typography>
                 <KeyboardArrowDownIcon fontSize="small" />
               </LinkButton>
 
               <LinkButton spacing={0.5}>
-                <Typography variant="body2">Blog</Typography>
-                <CallMadeIcon sx={{ fontSize: 12 }} />
+                <Typography variant="body2">Buy Crypto</Typography>
               </LinkButton>
             </Stack>
           )}
@@ -111,13 +116,13 @@ const Navbar = () => {
               <MenuIcon sx={{ color: "text.secondary" }} />
             </IconButton>
           ) : (
-            <Stack direction="row" spacing={5} alignItems="center">
-              <LinkButton spacing={1}>
-                <LanguageIcon fontSize="small" />
-                <Typography variant="body2">EN</Typography>
-              </LinkButton>
-
-              <LaunchButton sx={{ borderRadius: 3 }} />
+            <Stack direction="row" spacing={1} alignItems="center">
+              <Button variant="contained" size="small">
+                Ethereum
+              </Button>
+              <Button variant="contained" size="small">
+                Connect Wallet
+              </Button>
             </Stack>
           )}
         </Stack>
@@ -126,4 +131,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default SwapNavbar;

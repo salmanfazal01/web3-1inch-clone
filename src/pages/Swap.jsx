@@ -1,9 +1,25 @@
-import React from 'react'
+import { Box } from "@mui/material";
+import React, { useState } from "react";
+import LoadingRouter from "../components/LoadingRouter";
+import SwapNavbar from "../components/Navbars/SwapNavbar";
+import SwapBox from "../containers/SwapBox";
 
 const Swap = () => {
-  return (
-    <div>Swap</div>
-  )
-}
+  const [isLoading, setIsLoading] = useState(false);
 
-export default Swap
+  if (isLoading) return <LoadingRouter />;
+
+  return (
+    <div>
+      {/* Navbar */}
+      <SwapNavbar />
+
+      {/* Box */}
+      <Box sx={{ mt: 8 }}>
+        <SwapBox />
+      </Box>
+    </div>
+  );
+};
+
+export default Swap;
