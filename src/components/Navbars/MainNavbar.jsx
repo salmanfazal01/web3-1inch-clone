@@ -1,3 +1,7 @@
+import CallMadeIcon from "@mui/icons-material/CallMade";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import LanguageIcon from "@mui/icons-material/Language";
+import MenuIcon from "@mui/icons-material/Menu";
 import {
   AppBar,
   Container,
@@ -7,15 +11,11 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
-import React, { Children } from "react";
+import React from "react";
 import { NAVBAR_HEIGHT } from "../../constants";
 import useScrollPosition from "../../hooks/useScrollPosition";
 import { navbarContent } from "../../utils/content";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import CallMadeIcon from "@mui/icons-material/CallMade";
-import LanguageIcon from "@mui/icons-material/Language";
 import LaunchButton from "../Buttons/LaunchButton";
-import MenuIcon from "@mui/icons-material/Menu";
 
 const { Logo } = navbarContent;
 

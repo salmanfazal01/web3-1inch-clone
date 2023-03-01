@@ -1,6 +1,8 @@
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import MenuIcon from "@mui/icons-material/Menu";
 import {
   AppBar,
-  Button,
+  Box,
   Container,
   IconButton,
   Stack,
@@ -8,15 +10,10 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
-import React, { Children } from "react";
+import React from "react";
 import { NAVBAR_HEIGHT } from "../../constants";
-import useScrollPosition from "../../hooks/useScrollPosition";
 import { navbarContent } from "../../utils/content";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import CallMadeIcon from "@mui/icons-material/CallMade";
-import LanguageIcon from "@mui/icons-material/Language";
-import LaunchButton from "../Buttons/LaunchButton";
-import MenuIcon from "@mui/icons-material/Menu";
+import ConnectButton from "../Buttons/ConnectButton";
 
 const { Logo } = navbarContent;
 
@@ -37,8 +34,6 @@ const LinkButton = ({ children, ...props }) => (
 );
 
 const SwapNavbar = () => {
-  const scrollPosition = useScrollPosition();
-
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("lg"));
 
@@ -49,8 +44,9 @@ const SwapNavbar = () => {
       sx={{
         py: 1,
         height: NAVBAR_HEIGHT,
-        bgcolor: scrollPosition > 10 ? "rgba(7,7,16,.7)" : "transparent",
-        backdropFilter: scrollPosition > 10 && "blur(60px)",
+        bgcolor: "transparent",
+        // bgcolor: scrollPosition > 10 ? "transparent" : "transparent",
+        // backdropFilter: scrollPosition > 10 && "blur(60px)",
       }}
     >
       <Container
@@ -71,7 +67,7 @@ const SwapNavbar = () => {
           <img src={Logo} style={{ height: "100%", objectFit: "contain" }} />
 
           {/* Links */}
-          {!isMobile && (
+          {!isMobile ? (
             <Stack
               direction="row"
               alignItems="center"
@@ -108,22 +104,17 @@ const SwapNavbar = () => {
                 <Typography variant="body2">Buy Crypto</Typography>
               </LinkButton>
             </Stack>
+          ) : (
+            <Box sx={{ flex: 1 }} />
           )}
 
+          <ConnectButton fit wallet size="small" sx={{ borderRadius: 3 }} />
+
           {/* Action Buttons */}
-          {isMobile ? (
+          {isMobile && (
             <IconButton>
               <MenuIcon sx={{ color: "text.secondary" }} />
             </IconButton>
-          ) : (
-            <Stack direction="row" spacing={1} alignItems="center">
-              <Button variant="contained" size="small">
-                Ethereum
-              </Button>
-              <Button variant="contained" size="small">
-                Connect Wallet
-              </Button>
-            </Stack>
           )}
         </Stack>
       </Container>

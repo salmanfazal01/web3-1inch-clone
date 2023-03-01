@@ -15,7 +15,7 @@ const animate = keyframes`
 
   100% {
     opacity: 1;
-    transform: scale(1.2, 1.2);
+    transform: scale(3, 3);
   }
 `;
 
@@ -24,7 +24,12 @@ const LoadingRouter = () => {
     <Stack
       alignItems="center"
       justifyContent="center"
-      sx={{ height: "100vh", width: "100vw" }}
+      sx={{
+        height: "100vh",
+        width: "100vw",
+        bgcolor: "background.dark",
+        overflow: "hidden",
+      }}
     >
       <Container maxWidth="md">
         <Box
