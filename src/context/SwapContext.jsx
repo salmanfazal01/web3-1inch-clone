@@ -1,4 +1,4 @@
-import { useAddress, useMetamask } from "@thirdweb-dev/react";
+import { useAddress, useMetamask, useSDK } from "@thirdweb-dev/react";
 import { ethers } from "ethers";
 import { useSnackbar } from "notistack";
 import React, {
@@ -38,16 +38,24 @@ export const SwapContextProvider = ({ children }) => {
   const [fromToken, setFromToken] = useState({});
   const [toToken, setToToken] = useState({});
   const [loadingPopup, setLoadingPopup] = useState(null);
-  const [error, setError] = useState(null);
+  const [gweiPrice, setGweiPrice] = useState(null);
 
   const { enqueueSnackbar } = useSnackbar();
   const address = useAddress();
   const connect = useMetamask();
+  const sdk = useSDK();
 
   const qtyInWei = parseQtyToWei(quantity, fromToken?.decimals) || 0;
 
   const closeLoadingPopup = () => {
     setLoadingPopup(null);
+  };
+
+  const getGasPrice = async () => {
+    const contract = await sdk.getContract(fromToken?.address);
+    const gasCostInGwei = await contract.estimator.currentGasPriceInGwei();
+
+    setGweiPrice(gasCostInGwei);
   };
 
   useMemo(() => {
@@ -86,6 +94,13 @@ export const SwapContextProvider = ({ children }) => {
     }
   }, [fromToken, address, quantity]);
 
+  // Get gwei price
+  useEffect(() => {
+    if (fromToken.address) {
+      getGasPrice();
+    }
+  }, [fromToken]);
+
   const switchTokens = () => {
     const _to = toToken;
     setToToken(fromToken);
@@ -95,10 +110,13 @@ export const SwapContextProvider = ({ children }) => {
 
   const getQuote = async () => {
     try {
+      await getGasPrice();
+
       const res = await fetchQuote(
         fromToken?.address,
         toToken?.address,
-        qtyInWei
+        qtyInWei,
+        gweiPrice
       );
 
       setQuote({
@@ -131,7 +149,7 @@ export const SwapContextProvider = ({ children }) => {
         qtyInWei
       );
 
-      console.log("context", allowance);
+      console.log("1) allowance", allowance);
 
       if (allowance.signAllowance) {
         await signTransaction({
@@ -147,18 +165,34 @@ export const SwapContextProvider = ({ children }) => {
         5
       );
 
-      console.log("TX received: ", txData);
+      console.log("2) TX received: ", txData);
 
       const obj = {
         to: String(txData?.to),
         from: String(txData?.from),
         data: String(txData?.data),
-        gasLimit: String(txData?.gas),
+        // gasLimit: String(txData?.gas),
         // gasPrice: String(txData?.gasPrice),
-        value: quote?.fromTokenAmount,
+        value: String(txData?.value), //quote?.fromTokenAmount,
       };
 
-      console.log("Making transaction with data: ", obj);
+      console.log("3) Making transaction with data: ", obj);
+
+      // const signature = await sdk.wallet.sign(txData?.data);
+
+      // console.log(signature);
+
+      setLoadingPopup({
+        title: "Making transaction",
+        message: "Please wait for the transaction to complete.",
+      });
+
+      await sdk.wallet.sendRawTransaction({ ...obj }).then((transaction) => {
+        console.log("4) transaction made:", transaction);
+        setLoadingPopup(null);
+      });
+
+      return null;
 
       // SEND THE TRANSACTION
       const provider = new ethers.providers.Web3Provider(
@@ -170,11 +204,15 @@ export const SwapContextProvider = ({ children }) => {
 
       await signer
         .sendTransaction({
-          ...obj,
-          // gasLimit: ethers.utils.hexlify(quote?.estimatedGas),
+          to: String(txData?.to),
+          from: String(txData?.from),
+          data: String(txData?.data),
+          gasLimit: String(txData?.gas),
+          value: String(txData?.value), //quote?.fromTokenAmount,
         })
+
         .then((transaction) => {
-          console.log(transaction);
+          console.log("4) transaction made:", transaction);
           setLoadingPopup(null);
         });
     } catch (error) {

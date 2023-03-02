@@ -24,14 +24,19 @@ export const fetchTokens = async (callback) => {
     });
 };
 
-export const fetchQuote = async (fromAddress, toAddress, quantity) => {
-  const gasPrice = await getGasPrice();
+export const fetchQuote = async (
+  fromAddress,
+  toAddress,
+  quantity,
+  gasPrice
+) => {
+  const url = `https://api.1inch.io/v5.0/1/quote?fromTokenAddress=${fromAddress}&toTokenAddress=${toAddress}&amount=${quantity}`;
+
   console.log("GWEI", gasPrice);
+  console.log("Fetching quote URL:", url);
 
   return await axios
-    .get(
-      `https://api.1inch.io/v5.0/1/quote?fromTokenAddress=${fromAddress}&toTokenAddress=${toAddress}&amount=${quantity}`
-    )
+    .get(url)
     .then(function (response) {
       const result = {
         ...(response?.data || {}),
@@ -121,14 +126,6 @@ export const checkAndApproveAllowance = async (
   }
 
   return { allowed: true };
-};
-
-export const getGasPrice = async () => {
-  const provider = new ethers.providers.Web3Provider(window.ethereum, "any");
-  const gasPrice = await provider.getGasPrice();
-  const gwei = ethers.utils.formatUnits(gasPrice, "gwei");
-
-  return Math.ceil(gwei) + 5;
 };
 
 export const signTransaction = async (obj = {}) => {
