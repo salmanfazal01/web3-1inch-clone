@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import LoadingRouter from "../components/LoadingRouter";
+import LoadingRouter from "../components/Loaders/LoadingRouter";
 import SwapNavbar from "../components/Navbars/SwapNavbar";
 import SwapBox from "../containers/SwapBox";
 

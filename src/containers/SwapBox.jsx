@@ -28,6 +28,8 @@ const SwapBox = () => {
     getQuote,
     quantity,
     fromToken,
+    swapTokens,
+    hasAllowance,
     toToken,
   } = useSwapContext();
 
@@ -135,7 +137,7 @@ const SwapBox = () => {
             >
               <InfoOutlinedIcon sx={{ fontSize: 15, mr: 0.5 }} />
               <Box component="span" sx={{ color: "text.primary", mr: 0.4 }}>
-                {quantity} {fromToken?.name} = 000 {toToken?.name}
+                {quantity} {fromToken?.name} = {quote?.to} {toToken?.name}
               </Box>
             </Typography>
 
@@ -147,7 +149,7 @@ const SwapBox = () => {
               <LocalGasStationOutlinedIcon
                 sx={{ fontSize: 18, mr: 0.5, color: "primary.main" }}
               />
-              ${quote}
+              {quote?.requiredEth} Ξ
             </Typography>
           </Stack>
         </Stack>
@@ -159,13 +161,20 @@ const SwapBox = () => {
           />
         ) : (
           <Stack direction="row" alignItems="center" spacing={2}>
-            <Button fullWidth variant="outlined" onClick={getQuote}>
-              Get Fees
+            <Button
+              fullWidth
+              variant="outlined"
+              onClick={getQuote}
+              disabled={!quantity || quantity <= 0}
+            >
+              Get Quote
             </Button>
 
             <Button
+              onClick={swapTokens}
               variant="outlined"
               fullWidth
+              disabled={!quote?.estimatedGas}
               sx={{
                 color: "primary.main",
                 bgcolor: "rgba(47, 138, 245, .16)",
@@ -174,7 +183,7 @@ const SwapBox = () => {
                 },
               }}
             >
-              Swap
+              {hasAllowance ? "Swap" : "Allow and Swap"}
             </Button>
           </Stack>
         )}

@@ -2,13 +2,7 @@ import AccountBalanceWalletOutlinedIcon from "@mui/icons-material/AccountBalance
 import { Button } from "@mui/material";
 import React from "react";
 import { useSwapContext } from "../../context/SwapContext";
-
-const smallerString = (_string, firstN = 5, lastN = -4, numOfDots = 4) => {
-  const _first = _string.slice(0, firstN);
-  const _last = _string.slice(lastN);
-
-  return `${_first}${Array(numOfDots).join(".")}${_last}`;
-};
+import { smallerString } from "../../utils/helpers";
 
 const ConnectButton = ({ sx = {}, wallet, children, fit, ...props }) => {
   const { address, connect } = useSwapContext();
@@ -19,6 +13,7 @@ const ConnectButton = ({ sx = {}, wallet, children, fit, ...props }) => {
       disableElevation
       fullWidth={!fit}
       sx={{
+        fontWeight: 400,
         color: "primary.main",
         bgcolor: "rgba(47, 138, 245, .16)",
         width: fit ? "fit-content" : "100%",
@@ -30,7 +25,9 @@ const ConnectButton = ({ sx = {}, wallet, children, fit, ...props }) => {
       onClick={connect}
       {...props}
     >
-      {wallet && <AccountBalanceWalletOutlinedIcon sx={{ mr: 0.7 }} />}
+      {wallet && (
+        <AccountBalanceWalletOutlinedIcon fontSize="small" sx={{ mr: 0.7 }} />
+      )}
       {address ? smallerString(address) : "Connect Wallet"}
     </Button>
   );

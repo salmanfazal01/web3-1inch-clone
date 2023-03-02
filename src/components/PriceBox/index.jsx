@@ -10,7 +10,7 @@ const PriceBox = ({
   estimatedPrice = "0.00",
   type = "from",
 }) => {
-  const { fromToken, toToken, quantity, setQuantity } = useSwapContext();
+  const { fromToken, toToken, quantity, setQuantity, quote } = useSwapContext();
   const theme = useTheme();
 
   const token = type === "from" ? fromToken : toToken;
@@ -42,7 +42,10 @@ const PriceBox = ({
         </Typography>
 
         <Typography variant="caption" color="text.secondary">
-          Balance: {balance}
+          Balance:{" "}
+          {parseFloat(balance)
+            ?.toFixed(5)
+            .replace(/\.?0+$/, "")}
           {maxButton && (
             <Box
               onClick={() => setQuantity(balance)}
@@ -90,7 +93,9 @@ const PriceBox = ({
             }}
           />
         ) : (
-          <Typography sx={{ fontSize: { xs: 20, sm: 24 } }}>0</Typography>
+          <Typography sx={{ fontSize: { xs: 20, sm: 24 } }}>
+            {quote?.to || 0}
+          </Typography>
         )}
       </Stack>
 

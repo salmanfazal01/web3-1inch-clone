@@ -1,5 +1,7 @@
 import axios from "axios";
+import { ethers } from "ethers";
 import { TOP_SYMBOLS } from "../constants";
+import { gasLimitToEth } from "../utils/helpers";
 
 // Fetch tokens
 export const fetchTokens = async (callback) => {
@@ -18,40 +20,35 @@ export const fetchTokens = async (callback) => {
       // handle error
       console.log(error);
       callback?.([]);
-    });
-};
-
-export const fetchTokenPrices = async (callback) => {
-  return await axios
-    .get("https://token-prices.1inch.io/v1.1/1")
-    .then(function (response) {
-      // handle success
-      const result = response.data || {};
-      callback?.(result);
-
-      return result;
-    })
-    .catch(function (error) {
-      // handle error
-      console.log(error);
-      callback?.([]);
+      throw error;
     });
 };
 
 export const fetchQuote = async (fromAddress, toAddress, quantity) => {
+  const gasPrice = await getGasPrice();
+  console.log("GWEI", gasPrice);
+
   return await axios
     .get(
       `https://api.1inch.io/v5.0/1/quote?fromTokenAddress=${fromAddress}&toTokenAddress=${toAddress}&amount=${quantity}`
     )
     .then(function (response) {
-      return response?.data;
+      const result = {
+        ...(response?.data || {}),
+        requiredEth: gasLimitToEth(response?.data?.estimatedGas || 40, gasPrice)
+          ?.toFixed(4)
+          .replace(/\.?0+$/, ""),
+      };
+      console.log("fetchQuote:", result);
+      return result;
     })
     .catch(function (error) {
       console.log(error?.response?.data);
+      throw error;
     });
 };
 
-export const fetchConversion = async (
+export const generateSwap = async (
   fromAddress,
   toAddress,
   quantity,
@@ -60,14 +57,15 @@ export const fetchConversion = async (
 ) => {
   return await axios
     .get(
-      `https://api.1inch.io/v5.0/1/swap?fromTokenAddress=${fromAddress}&toTokenAddress=${toAddress}&amount=${quantity}&fromAddress=${"0x0ffD88E802FdB1cFFD2f7F3906C339a1B27469f9"}&slippage=${slippage}`
+      `https://api.1inch.io/v5.0/1/swap?fromTokenAddress=${fromAddress}&toTokenAddress=${toAddress}&amount=${quantity}&fromAddress=${userAddress}&slippage=${slippage}`
     )
     .then(function (response) {
-      console.log("CONVERSION TX: ", response);
-      return result;
+      console.log("generateSwap", response);
+      return response?.data?.tx || {};
     })
     .catch(function (error) {
       console.log(error?.response?.data);
+      throw error;
     });
 };
 
@@ -81,5 +79,74 @@ export const getCoinPriceInUSD = async (coin = "ethereum", callback) => {
     })
     .catch(function (error) {
       console.log(error?.response?.data);
+    });
+};
+
+export const checkAllowance = async (tokenAddress, walletAddress) => {
+  return await axios
+    .get(
+      `https://api.1inch.io/v5.0/1/approve/allowance?tokenAddress=${tokenAddress}&walletAddress=${walletAddress}`
+    )
+    .then(function (response) {
+      console.log("allowance: ", response?.data?.allowance);
+      return response?.data?.allowance || 0;
+    })
+    .catch(function (error) {
+      console.log(error);
+      throw error;
+    });
+};
+
+export const checkAndApproveAllowance = async (
+  tokenAddress,
+  walletAddress,
+  quantity
+) => {
+  const availableAllowance = await checkAllowance(tokenAddress, walletAddress);
+
+  if (availableAllowance < quantity) {
+    return await axios
+      .get(
+        `https://api.1inch.io/v5.0/1/approve/transaction?tokenAddress=${tokenAddress}` //&amount=${quantity}
+      )
+      .then(function (response) {
+        console.log(response?.data);
+        return { data: response?.data, signAllowance: true };
+      })
+      .catch(function (error) {
+        console.log(error);
+        throw error;
+        // return { allowed: false, signAllowance: false };
+      });
+  }
+
+  return { allowed: true };
+};
+
+export const getGasPrice = async () => {
+  const provider = new ethers.providers.Web3Provider(window.ethereum, "any");
+  const gasPrice = await provider.getGasPrice();
+  const gwei = ethers.utils.formatUnits(gasPrice, "gwei");
+
+  return Math.ceil(gwei) + 5;
+};
+
+export const signTransaction = async (obj = {}) => {
+  const provider = new ethers.providers.Web3Provider(window.ethereum, "any");
+
+  // get a signer wallet!
+  const signer = provider.getSigner();
+
+  return await signer
+    .sendTransaction({
+      ...obj,
+    })
+    .then((transaction) => {
+      console.log("Signed", transaction);
+      return transaction;
+    })
+    .catch((err) => {
+      console.log(err);
+      throw err;
     });
 };

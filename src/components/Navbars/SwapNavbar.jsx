@@ -15,7 +15,7 @@ import { NAVBAR_HEIGHT } from "../../constants";
 import { navbarContent } from "../../utils/content";
 import ConnectButton from "../Buttons/ConnectButton";
 
-const { Logo } = navbarContent;
+const { LogoBlack } = navbarContent;
 
 const LinkButton = ({ children, ...props }) => (
   <Stack
@@ -64,7 +64,10 @@ const SwapNavbar = () => {
           spacing={5}
         >
           {/* Logo */}
-          <img src={Logo} style={{ height: "100%", objectFit: "contain" }} />
+          <img
+            src={LogoBlack}
+            style={{ height: "100%", objectFit: "contain" }}
+          />
 
           {/* Links */}
           {!isMobile ? (

@@ -130,7 +130,7 @@ const SelectToken = ({ style, sx = {}, type = "from" }) => {
         >
           <List sx={{ overflowY: "auto" }}>
             {searchedTokens.map((item, i) => (
-              <ListItem key={i}>
+              <ListItem key={i} disablePadding>
                 <ListItemButton
                   onClick={() => handleChange(item)}
                   selected={toToken?.symbol === item.symbol}
@@ -151,7 +151,7 @@ const SelectToken = ({ style, sx = {}, type = "from" }) => {
                       </Typography>
                     </Box>
 
-                    <Typography>{0}</Typography>
+                    {/* <Typography>{0}</Typography> */}
                   </Stack>
                 </ListItemButton>
               </ListItem>

@@ -1,4 +1,5 @@
 import { ThirdwebProvider } from "@thirdweb-dev/react";
+import { SnackbarProvider } from "notistack";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter as Router } from "react-router-dom";
@@ -8,9 +9,11 @@ import "./index.css";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <ThirdwebProvider activeChain="ethereum">
-      <Router>
-        <App />
-      </Router>
+      <SnackbarProvider maxSnack={3}>
+        <Router>
+          <App />
+        </Router>
+      </SnackbarProvider>
     </ThirdwebProvider>
   </React.StrictMode>
 );

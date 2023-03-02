@@ -83,6 +83,7 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 
 // Navbar
 import Logo from "../assets/images/logo.svg";
+import LogoBlack from "../assets/images/logo-black.svg";
 
 export const section1Content = {
   MainBG,
@@ -393,4 +394,5 @@ export const footerContent = {
 
 export const navbarContent = {
   Logo,
+  LogoBlack,
 };

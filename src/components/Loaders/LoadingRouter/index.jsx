@@ -1,6 +1,6 @@
 import { Box, Container, Stack, keyframes } from "@mui/material";
 import React from "react";
-import LoadingLogo from "../../assets/images/loading-logo.svg";
+import LoadingLogo from "../../../assets/images/loading-logo.svg";
 
 const animate = keyframes`
   0% {
