@@ -194,27 +194,27 @@ export const SwapContextProvider = ({ children }) => {
 
       return null;
 
-      // SEND THE TRANSACTION
-      const provider = new ethers.providers.Web3Provider(
-        window.ethereum,
-        "any"
-      );
-      // get a signer wallet!
-      const signer = provider.getSigner();
+      // // SEND THE TRANSACTION
+      // const provider = new ethers.providers.Web3Provider(
+      //   window.ethereum,
+      //   "any"
+      // );
+      // // get a signer wallet!
+      // const signer = provider.getSigner();
 
-      await signer
-        .sendTransaction({
-          to: String(txData?.to),
-          from: String(txData?.from),
-          data: String(txData?.data),
-          gasLimit: String(txData?.gas),
-          value: String(txData?.value), //quote?.fromTokenAmount,
-        })
+      // await signer
+      //   .sendTransaction({
+      //     to: String(txData?.to),
+      //     from: String(txData?.from),
+      //     data: String(txData?.data),
+      //     gasLimit: String(txData?.gas),
+      //     value: String(txData?.value), //quote?.fromTokenAmount,
+      //   })
 
-        .then((transaction) => {
-          console.log("4) transaction made:", transaction);
-          setLoadingPopup(null);
-        });
+      //   .then((transaction) => {
+      //     console.log("4) transaction made:", transaction);
+      //     setLoadingPopup(null);
+      //   });
     } catch (error) {
       console.log("ERROR:", error);
       setLoadingPopup(null);

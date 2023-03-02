@@ -19,8 +19,8 @@ const Section11 = () => {
         spacing={3}
         sx={{ mb: 10, position: "relative" }}
       >
-        {ITEMS.map(({ link, image }) => (
-          <Grid item xs={6} sm={4} md={3} lg={2}>
+        {ITEMS.map(({ link, image }, i) => (
+          <Grid item xs={6} sm={4} md={3} lg={2} key={i}>
             <Box
               sx={{ cursor: "pointer", "&:hover": { filter: "contrast(40%)" } }}
             >

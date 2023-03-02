@@ -11,6 +11,7 @@ import {
   useTheme,
 } from "@mui/material";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { NAVBAR_HEIGHT } from "../../constants";
 import { navbarContent } from "../../utils/content";
 import ConnectButton from "../Buttons/ConnectButton";
@@ -36,6 +37,8 @@ const LinkButton = ({ children, ...props }) => (
 const SwapNavbar = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("lg"));
+
+  const navigate = useNavigate();
 
   return (
     <AppBar
@@ -64,10 +67,12 @@ const SwapNavbar = () => {
           spacing={5}
         >
           {/* Logo */}
-          <img
-            src={LogoBlack}
-            style={{ height: "100%", objectFit: "contain" }}
-          />
+          <Box onClick={() => navigate("/")} sx={{ cursor: "pointer" }}>
+            <img
+              src={LogoBlack}
+              style={{ height: "100%", objectFit: "contain" }}
+            />
+          </Box>
 
           {/* Links */}
           {!isMobile ? (
